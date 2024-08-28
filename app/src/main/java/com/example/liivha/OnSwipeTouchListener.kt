@@ -50,3 +50,4 @@ open class OnSwipeTouchListener(ctx: Context) : View.OnTouchListener {
         // Implement this in the activity if needed
     }
 }
+*/
