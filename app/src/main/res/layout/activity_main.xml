@@ -9,14 +9,12 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/logoimageView"
-        android:layout_width="176dp"
-        android:layout_height="155dp"
+        android:id="@+id/Logo"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.472"
-        tools:srcCompat="@drawable/logo" />
-
+        app:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Initialize the logo ImageView
-        val logoImageView: ImageView = findViewById(R.id.logoimageView)
+        val logoImageView: ImageView = findViewById(R.id.Logo)
 
         // Load and start the animation
         val logoAnimation = AnimationUtils.loadAnimation(this, R.anim.splashanimation)
