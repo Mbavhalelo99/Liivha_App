@@ -35,6 +35,8 @@ class Login<EditText> : AppCompatActivity() {
 
             // Add your authentication logic here (e.g., validate inputs, authenticate user)
             // Navigate to the home screen or show error messages
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
         }
 
         // Set click listener for the Forgot Password text
