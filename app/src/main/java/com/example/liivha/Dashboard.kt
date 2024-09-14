@@ -43,7 +43,7 @@ class Dashboard : AppCompatActivity() {
         // Popular Place 2 button
         val popLoc2Btn = findViewById<ImageView>(R.id.popLoc2Btn)
         popLoc2Btn.setOnClickListener {
-            val intent = Intent(this, PopularPlaces::class.java)
+            val intent = Intent(this, PopularPlaces2::class.java)
             startActivity(intent)
         }
     }
