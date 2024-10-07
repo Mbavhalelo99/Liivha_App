@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "8472396174",
+    "project_id": "liivha-8801c",
+    "storage_bucket": "liivha-8801c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8472396174:android:d8d20e318d7d674886a4df",
+        "android_client_info": {
+          "package_name": "com.example.liivha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo3WsOl39ilFtgjSb0e_dnJdOCTLaQlvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
