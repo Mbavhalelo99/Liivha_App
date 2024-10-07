@@ -11,20 +11,28 @@ activity = "1.9.0"
 constraintlayout = "2.1.4"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
+googleGmsGoogleServices = "4.4.2"
+firebaseDatabase = "21.0.0"
 
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
-androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+google-play-services-maps = { module = "com.google.android.gms:play-services-maps", version = "18.0.2" }
+retrofit-core = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
+retrofit-gson-converter = { module = "com.squareup.retrofit2:converter-gson", version = "2.9.0" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.12.0" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version = "1.6.1" }
+material = { module = "com.google.android.material:material", version = "1.9.0" }
+androidx-activity = { module = "androidx.activity:activity", version = "1.7.2" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.4" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version = "2.6.0" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version = "2.6.0" }
+firebase-database = { module = "com.google.firebase:firebase-database", version = "20.2.1" }
+junit = { module = "junit:junit", version = "4.13.2" }
+androidx-junit = { module = "androidx.test.ext:junit", version = "1.1.5" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version = "3.5.1" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 
