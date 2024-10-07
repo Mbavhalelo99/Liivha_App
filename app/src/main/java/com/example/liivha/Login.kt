@@ -3,20 +3,31 @@ package com.example.liivha
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 
-class Login<EditText> : AppCompatActivity() {
+class Login : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // Adjust the window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
         // Find views by ID
         val usernameEditText: EditText = findViewById(R.id.usernameEditText)
@@ -27,42 +38,47 @@ class Login<EditText> : AppCompatActivity() {
 
         // Set click listener for the login button
         loginButton.setOnClickListener {
-            // Retrieve the input data from EditText fields
-            val username = usernameEditText.toString()
-            val password = passwordEditText.toString()
+            val email = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
-            // Add your authentication logic here (e.g., validate inputs, authenticate user)
-            // Navigate to the home screen or show error messages
-            val intent = Intent(this, Dashboard::class.java)
-            startActivity(intent)
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+            } else {
+                loginUser(email, password)
+            }
         }
 
         // Set click listener for the Forgot Password text
         forgotPasswordTextView.setOnClickListener {
-            // Navigate to Forgot Password screen
             val intent = Intent(this, Forgot_Password::class.java)
             startActivity(intent)
         }
 
         // Set click listener for the Sign Up text
         signUpTextView.setOnClickListener {
-            // Navigate to Sign Up screen
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
+    }
 
-        // Find the root layout of the activity
-        //val main: ConstraintLayout = findViewById(R.id.main)
-
-        // Set the OnSwipeTouchListener to detect the swipe gesture
-        //main.setOnTouchListener(object : OnSwipeTouchListener(this) {
-        //override fun onSwipeRight() {
-        // When swipe right, navigate back to the "Getting Started" screen
-        //val intent = Intent(this@Login, GetStarted::class.java)
-        //startActivity(intent)
-        //finish() // Close the current activity
-        //Toast.makeText(this@Login, "Swiped Right!", Toast.LENGTH_SHORT).show()
-        //}
-        //})
+    private fun loginUser(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Login successful, navigate to Dashboard
+                    val intent = Intent(this, Dashboard::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // If sign-in fails, display a message and direct to register screen
+                    Toast.makeText(
+                        this,
+                        "Authentication failed. Please register.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val intent = Intent(this, Register::class.java)
+                    startActivity(intent)
+                }
+            }
     }
 }
