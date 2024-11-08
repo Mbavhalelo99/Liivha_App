@@ -37,7 +37,7 @@ class MapView : AppCompatActivity(), OnMapReadyCallback, LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map_view)
+        setContentView(R.layout.activity_map_activity)
 
         mapView = findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
@@ -248,6 +248,12 @@ class MapView : AppCompatActivity(), OnMapReadyCallback, LocationListener {
         val lng: Double
     )
 }
+
+
+
+
+
+
 
 
 

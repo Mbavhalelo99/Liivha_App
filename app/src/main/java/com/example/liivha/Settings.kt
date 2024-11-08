@@ -1,64 +1,75 @@
 package com.example.liivha
 
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
-import android.widget.SeekBar
-import android.widget.Switch
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class Settings : AppCompatActivity() {
 
-    private lateinit var metricSwitch: Switch
-    private lateinit var distanceSeekBar: SeekBar
-    private lateinit var maxDistanceLabel: TextView
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var metricsValue: TextView
+    private lateinit var distanceValue: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        // Initialize SharedPreferences
-        sharedPreferences = getSharedPreferences("LiivhaSettings", MODE_PRIVATE)
+        // Initialize Firestore
+        firestore = Firebase.firestore
 
-        metricSwitch = findViewById(R.id.metricSwitch)
-        distanceSeekBar = findViewById(R.id.distanceSeekBar)
-        maxDistanceLabel = findViewById(R.id.maxDistanceLabel)
+        // Reference to TextViews
+        metricsValue = findViewById(R.id.metricsValue)
+        distanceValue = findViewById(R.id.distanceValue)
 
-        // Load saved settings
-        loadSettings()
 
-        // Toggle metric/imperial system
-        metricSwitch.setOnCheckedChangeListener { _, isChecked ->
-            val unitSystem = if (isChecked) "Metric" else "Imperial"
-            sharedPreferences.edit().putString("UnitSystem", unitSystem).apply()
+        findViewById<Button>(R.id.metricsButton).setOnClickListener {
+            startActivity(Intent(this, Metrics::class.java))
         }
 
-        // SeekBar listener to update maximum distance
-        distanceSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val unit = if (metricSwitch.isChecked) "km" else "miles"
-                maxDistanceLabel.text = "Maximum Distance ($progress $unit)"
-                sharedPreferences.edit().putInt("MaxDistance", progress).apply()
-            }
+        findViewById<Button>(R.id.distanceButton).setOnClickListener {
+            startActivity(Intent(this, PreferredDistance::class.java))
+        }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // Optional: Handle touch events when user starts moving the SeekBar
-            }
+        val bckBtn = findViewById<ImageView>(R.id.bckBtnS)
+        bckBtn.setOnClickListener {
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
+            finish()
+        }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // Optional: Handle touch events when user stops moving the SeekBar
-            }
-        })
+        // Fetch data from Firestore
+        fetchDataFromFirestore()
     }
 
-    private fun loadSettings() {
-        val unitSystem = sharedPreferences.getString("UnitSystem", "Metric")
-        val maxDistance = sharedPreferences.getInt("MaxDistance", 50)
+    private fun fetchDataFromFirestore() {
+        // Replace "userSettings" with your Firestore collection name and "userId" with the document ID
+        firestore.collection("userSettings").document("userId")
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    // Assuming fields "metrics" and "preferredDistance" are in your Firestore document
+                    val metrics = document.getString("metrics")
+                    val distance = document.getString("preferredDistance")
 
-        metricSwitch.isChecked = unitSystem == "Metric"
-        distanceSeekBar.progress = maxDistance
-        val unit = if (metricSwitch.isChecked) "km" else "miles"
-        maxDistanceLabel.text = "Maximum Distance ($maxDistance $unit)"
+                    // Update TextViews
+                    metricsValue.text = metrics ?: "KM"  // Default to "KM" if metrics is null
+                    distanceValue.text =
+                        distance ?: "40Km"  // Default to "40Km" if distance is null
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle any errors
+                metricsValue.text = "Error"
+                distanceValue.text = "Error"
+            }
     }
 }
+
+
+

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.5.2"
+android = "10.11.0"
 kotlin = "1.9.0"
 play-services-maps = "18.1.0"
 retrofit = "2.9.0"
@@ -16,8 +17,14 @@ navigationUiKtx = "2.6.0"
 googleGmsGoogleServices = "4.4.2"
 firebaseDatabase = "21.0.0"
 firebaseAuthKtx = "23.0.0"
+playServicesLocation = "21.3.0"
+firebaseAuth = "23.0.0"
+firebaseFirestoreKtx = "25.1.1"
+
+
 
 [libraries]
+android = { module = "com.mapbox.maps:android", version.ref = "android" }
 google-play-services-maps = { module = "com.google.android.gms:play-services-maps", version = "18.0.2" }
 retrofit-core = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
 retrofit-gson-converter = { module = "com.squareup.retrofit2:converter-gson", version = "2.9.0" }
@@ -33,6 +40,11 @@ junit = { module = "junit:junit", version = "4.13.2" }
 androidx-junit = { module = "androidx.test.ext:junit", version = "1.1.5" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version = "3.5.1" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+
+
 
 
 [plugins]

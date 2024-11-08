@@ -9,12 +9,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class Register : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +28,9 @@ class Register : AppCompatActivity() {
             insets
         }
 
-        // Initialize Firebase Realtime Database
+        // Initialize Firebase Realtime Database and Firebase Authentication
         database = FirebaseDatabase.getInstance().reference
+        auth = FirebaseAuth.getInstance()
 
         // Find views by ID
         val nameEditText: EditText = findViewById(R.id.nameEditText)
@@ -109,8 +112,8 @@ class Register : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                // If username and email are unique, register the user
-                registerUser(username, email, name, surname, password)
+                // Register user with Firebase Authentication
+                registerUserWithAuthentication(email, password, username, name, surname)
             }
         }.addOnFailureListener {
             Toast.makeText(
@@ -121,33 +124,43 @@ class Register : AppCompatActivity() {
         }
     }
 
-    private fun registerUser(
-        username: String,
+    private fun registerUserWithAuthentication(
         email: String,
+        password: String,
+        username: String,
         name: String,
-        surname: String,
-        password: String
+        surname: String
     ) {
-        // Create a unique user ID for the database entry
-        val userId = database.child("users").push().key
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val firebaseUser = auth.currentUser
+                val userId = firebaseUser?.uid
 
-        if (userId != null) {
-            val user = User(userId, name, surname, email, username, password)
-            database.child("users").child(userId).setValue(user)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, Login::class.java)
-                        startActivity(intent)
-                        finish() // Close the current activity
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Failed to register. Please try again.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                if (userId != null) {
+                    val user = User(userId, name, surname, email, username)
+                    database.child("users").child(userId).setValue(user).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT)
+                                .show()
+                            val intent = Intent(this, Login::class.java)
+                            startActivity(intent)
+                            finish() // Close the current activity
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Failed to register. Please try again.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
+            } else {
+                Toast.makeText(
+                    this,
+                    "Authentication failed. ${task.exception?.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 }
@@ -158,6 +171,6 @@ data class User(
     val name: String,
     val surname: String,
     val email: String,
-    val username: String,
-    val password: String
+    val username: String
 )
+

@@ -19,7 +19,7 @@ class PopularPlaces : AppCompatActivity() {
             insets
         }
         // Back button (bckBtn)
-        val bckBtn = findViewById<ImageView>(R.id.bckBtn)
+        val bckBtn = findViewById<ImageView>(R.id.bckBtnS)
         bckBtn.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)

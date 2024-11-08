@@ -17,18 +17,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/encode_sans_expanded_bold"
+        android:text="Sign Up!"
+        android:textColor="#085539"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
     <EditText
         android:id="@+id/nameEditText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_edittext_background"
         android:hint="Name"
         android:inputType="textPersonName"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <EditText
         android:id="@+id/surnameEditText"

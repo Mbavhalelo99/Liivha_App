@@ -8,26 +8,57 @@
     tools:context=".Login">
 
 
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:fontFamily="@font/encode_sans_expanded_bold"
+        android:text="Log In/"
+        android:textColor="#085539"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView24"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/encode_sans_medium"
+        android:text="Sign Up"
+        android:textColor="#085539"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView23"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="287dp"
         android:layout_height="47dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rounded_edittext_background"
+        android:fontFamily="@font/encode_sans"
         android:hint="Username"
         android:inputType="text"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="287dp"
         android:layout_height="47dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/rounded_edittext_background"
+        android:fontFamily="@font/encode_sans"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="12dp"
@@ -43,6 +74,7 @@
         android:layout_width="203dp"
         android:layout_height="50dp"
         android:backgroundTint="#10D48E"
+        android:fontFamily="@font/encode_sans_medium"
         android:padding="12dp"
         android:text="Log In"
         android:textColor="@color/white"
@@ -61,6 +93,7 @@
         android:layout_marginTop="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="@font/encode_sans_medium"
         android:text="Forgot Password?"
         android:textColor="#4D4C4C"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +109,7 @@
         android:layout_marginTop="30dp"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="@font/encode_sans_medium"
         android:text="Register Account"
         android:textColor="#2C2B2B"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainbg"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".PreferredDistance">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/seethrough" />
+
+        <ImageView
+            android:id="@+id/imageView34"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView33"
+            app:srcCompat="@drawable/logo" />
+
+        <ImageView
+            android:id="@+id/bckBtnS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView34"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView34"
+            app:srcCompat="@drawable/rectangle" />
+
+        <ImageView
+            android:id="@+id/imageView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/bckBtnS"
+            app:layout_constraintEnd_toEndOf="@+id/bckBtnS"
+            app:layout_constraintStart_toStartOf="@+id/bckBtnS"
+            app:layout_constraintTop_toTopOf="@+id/bckBtnS"
+            app:srcCompat="@drawable/backicon" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/encode_sans_expanded_bold"
+            android:text="PREFERRED DISTANCE"
+            android:textColor="#085539"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView34" />
+
+        <EditText
+            android:id="@+id/distanceEditText"
+            android:layout_width="300dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/rounded_edittext_background"
+            android:fontFamily="@font/encode_sans"
+            android:gravity="center|center_horizontal"
+            android:hint="Enter Your Preferred Distance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="183dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#10D48E"
+            android:fontFamily="@font/encode_sans"
+            android:text="Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distanceEditText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
